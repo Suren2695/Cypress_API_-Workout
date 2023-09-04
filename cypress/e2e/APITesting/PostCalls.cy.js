@@ -26,7 +26,7 @@ describe('Post Call api testing',() =>{
 
     //Approach 2
 
-    it.only('Approach 2 -  Dynamically generating Json objects',() =>{
+    it('Approach 2 -  Dynamically generating Json objects',() =>{
 
         const requestBody = {
             tourist_name : Math.random().toString(5).substring(2),
@@ -44,5 +44,29 @@ describe('Post Call api testing',() =>{
             expect(res.body.tourist_email).to.eq(requestBody.tourist_email)
             expect(res.body.tourist_location).to.eq(requestBody.tourist_location)
         })
+    })
+
+    // Approach 3
+
+    it.only('Approach 3 -  Using Fixture file',() =>{
+
+        cy.fixture('PostCall').then((data) =>{
+            const requestBody = data
+        
+            cy.request({
+                method: "POST",
+                url: "http://restapi.adequateshop.com/api/Tourist",
+                body:requestBody
+            })
+            .then((res) =>{
+                expect(res.status).to.eq(201)
+                expect(res.body.tourist_name).to.eq(requestBody.tourist_name)
+                expect(res.body.tourist_email).to.eq(requestBody.tourist_email)
+                expect(res.body.tourist_location).to.eq(requestBody.tourist_location)
+
+                // verify property
+                expect(res.body).has.property('tourist_email',requestBody.tourist_email)
+            })
+        })    
     })
 })

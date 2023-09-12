@@ -14,6 +14,8 @@ describe('Headers and Cookies - API Testing', () =>{
                 clientName:'ABC',
                 clientEmail:Math.random().toString(5).substring(2)+'gmail.com'
             }
+        }).then((res)=>{
+            authToken = res.body.accessToken
         })
     })
 

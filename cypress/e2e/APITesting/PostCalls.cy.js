@@ -48,7 +48,7 @@ describe('Post Call api testing',() =>{
 
     // Approach 3
 
-    it.only('Approach 3 -  Using Fixture file',() =>{
+    it('Approach 3 -  Using Fixture file',() =>{      //.only ( used to run only the respective test case)
 
         cy.fixture('PostCall').then((data) =>{
             const requestBody = data

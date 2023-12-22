@@ -18,3 +18,11 @@ Here we can Learn about the Rest API Examples on HTTP Methods :
 
 # Reference Links to verify
 1. https://www.cypress.io/blog/2023/02/13/implementing-api-testing-like-a-pro-1/
+2. Sample API references for framework - https://gorest.co.in/
+
+# Framework structure:
+1. Get
+2. get Users Details
+3. Invalid URL -
+4. get user detail for 1 user
+5. Invalid Users

@@ -1,6 +1,7 @@
 const { expect } = require("chai")
 
 describe('POST CALL', () => {
+// Normal Hardcoded value
   it('POST CALL - Json', () => {
     cy.request({
       method: 'POST',
@@ -20,4 +21,35 @@ describe('POST CALL', () => {
       expect(res.body.id).to.not.be.null;
     });
   });
+
+  // create a function from email 
+  
+  function generateRandomEmail() {
+    const randomString = Math.random().toString(36).substring(2,10)
+    const email = randomString+"@photon.com"
+    return email
+} 
+  
+    it.only('POST CALL - Json using method',() =>{
+        const randoEmail = generateRandomEmail()
+        cy.request({
+            method: "POST",
+            url: 'https://gorest.co.in/public/v2/users',
+            headers:{
+                Authorization: 'Bearer 272ba2170767a4eeed41af71d0003069809b427f9aed7f320e5875591e14a45d',
+            },
+            body:{
+                "name": "Rohit sharma",
+                "email": randoEmail,
+                "gender": "male",
+                "status": "active"
+            }
+        }).then((res)=>{
+            expect(res.status).to.eq(201);
+            expect(res.body).to.have.property("name", "Rohit sharma"); // Case-sensitive
+            expect(res.body).to.have.property("gender", "male");
+            expect(res.body).to.have.property("status", "active");
+            expect(res.body.id).to.not.be.null;
+        })
+    })
 });

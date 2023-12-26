@@ -32,21 +32,24 @@ describe('POST CALL', () => {
   
     it.only('POST CALL - Json using method',() =>{
         const randoEmail = generateRandomEmail()
+        const payLoad = {          //adding value as a payload.
+            "name": "Rohit sharma",
+            "email": randoEmail,
+            "gender": "male",
+            "status": "active"
+        }
+        cy.log(" *******EMAIL******"+randoEmail)
         cy.request({
             method: "POST",
             url: 'https://gorest.co.in/public/v2/users',
             headers:{
                 Authorization: 'Bearer 272ba2170767a4eeed41af71d0003069809b427f9aed7f320e5875591e14a45d',
             },
-            body:{
-                "name": "Rohit sharma",
-                "email": randoEmail,
-                "gender": "male",
-                "status": "active"
-            }
+            body:payLoad
         }).then((res)=>{
             expect(res.status).to.eq(201);
             expect(res.body).to.have.property("name", "Rohit sharma"); // Case-sensitive
+            //cy.log("***** LOG 1**********")
             expect(res.body).to.have.property("gender", "male");
             expect(res.body).to.have.property("status", "active");
             expect(res.body.id).to.not.be.null;

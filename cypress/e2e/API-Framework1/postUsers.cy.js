@@ -86,7 +86,7 @@ describe('POST CALL', () => {
         })
     })
 
-    //
+    // post call using config json with POST a call and GET the ID for the POST call wich is auto generated.
 
     it.only('POST CALL - using config JSOn (',() =>{
         
@@ -106,6 +106,23 @@ describe('POST CALL', () => {
                 expect(res.body).to.have.property("gender", "male");
                 expect(res.body).to.have.property("status", "active");
                 expect(res.body.id).to.not.be.null;
+
+                let id = res.body.id
+
+                cy.request({
+                    method:"GET",
+                    url: 'https://gorest.co.in/public/v2/users/'+id,
+                    headers:{
+                        Authorization: 'Bearer 272ba2170767a4eeed41af71d0003069809b427f9aed7f320e5875591e14a45d',
+                    }
+                }).then((res) =>{
+                    expect(res.status).to.eq(200);
+                expect(res.body).to.have.property("name", "SK");
+                expect(res.body).to.have.property("email",randoEmail)
+                expect(res.body).to.have.property("gender", "male");
+                expect(res.body).to.have.property("status", "active");
+                expect(res.body.id).to.not.be.null;
+                })
             })
     })
 });

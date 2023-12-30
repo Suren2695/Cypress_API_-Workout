@@ -88,7 +88,7 @@ describe('POST CALL', () => {
 
     // post call using config json with POST a call and GET the ID for the POST call wich is auto generated.
 
-    it.only('POST CALL - using config JSOn (',() =>{
+    it('POST CALL - using config JSOn (',() =>{
         
             const randoEmail= payload.email = generateRandomEmail()    // or direct assing to generateRandomEmail()
             cy.request({
@@ -116,7 +116,7 @@ describe('POST CALL', () => {
                         Authorization: 'Bearer 272ba2170767a4eeed41af71d0003069809b427f9aed7f320e5875591e14a45d',
                     }
                 }).then((res) =>{
-                    expect(res.status).to.eq(200);
+                expect(res.status).to.eq(200);
                 expect(res.body).to.have.property("name", "SK");
                 expect(res.body).to.have.property("email",randoEmail)
                 expect(res.body).to.have.property("gender", "male");
@@ -125,4 +125,22 @@ describe('POST CALL', () => {
                 })
             })
     })
+
+    // POST config JSON - Negative case || wrong case - Pass invalid Bearer Token in Headers
+
+    it.only(' POST CALL - Negative case || wrong case',() =>{
+
+        cy.request({
+            method: "POST",
+            url: 'https://gorest.co.in/public/v2/users',
+            headers:{
+                Authorization: 'Bearer',
+            },
+            body: payload,
+            failOnStatusCode: false
+            
+        }).then((res)=>{
+            expect(res.status).to.eq(401);         
+        })
+})
 });

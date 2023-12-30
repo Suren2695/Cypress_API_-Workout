@@ -128,7 +128,7 @@ describe('POST CALL', () => {
 
     // POST config JSON - Negative case - Passing invalid Bearer Token in Headers
 
-    it.only(' POST CALL - Negative case || wrong case',() =>{
+    it(' POST CALL - Negative case || wrong header',() =>{
 
         cy.request({
             method: "POST",
@@ -142,5 +142,31 @@ describe('POST CALL', () => {
         }).then((res)=>{
             expect(res.status).to.eq(401);         
         })
+    })
+    
+    // POST config JSON -  Negative case - Passing wrong Data
+
+    it.only('POST CALL - Negative case || wrong Data & verify the response', () => {
+        payload.email = null;
+      
+        cy.request({
+          method: "POST",
+          url: 'https://gorest.co.in/public/v2/users',
+          headers: {
+            Authorization: 'Bearer 272ba2170767a4eeed41af71d0003069809b427f9aed7f320e5875591e14a45d',
+          },
+          body: payload,
+          failOnStatusCode: false,
+
+        }).then((res) => {
+          expect(res.status).to.eq(422);
+      
+          // response body is an array
+          expect(res.body).to.deep.include({
+            field: "email",
+            message: "can't be blank",
+          })
+        })
+      })
+      
 })
-});

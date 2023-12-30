@@ -126,7 +126,7 @@ describe('POST CALL', () => {
             })
     })
 
-    // POST config JSON - Negative case || wrong case - Pass invalid Bearer Token in Headers
+    // POST config JSON - Negative case - Passing invalid Bearer Token in Headers
 
     it.only(' POST CALL - Negative case || wrong case',() =>{
 
@@ -138,7 +138,7 @@ describe('POST CALL', () => {
             },
             body: payload,
             failOnStatusCode: false
-            
+
         }).then((res)=>{
             expect(res.status).to.eq(401);         
         })

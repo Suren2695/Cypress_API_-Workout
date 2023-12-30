@@ -26,7 +26,7 @@ describe('POST CALL', () => {
 
   // create a function from email 
   
-  function generateRandomEmail() {
+  let generateRandomEmail = () => {
     const randomString = Math.random().toString(36).substring(2,10)
     const email = randomString+"@photon.com"
     return email

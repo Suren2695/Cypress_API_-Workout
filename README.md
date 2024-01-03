@@ -22,12 +22,14 @@ Here we can Learn about the Rest API Examples on HTTP Methods :
 2. Sample API references for framework - https://gorest.co.in/
 
 # Framework Content:
+
 # - GET
 1. Get method
 2. get Users Details
 3. Invalid URL -
 4. get user detail for 1 user
 5. Invalid Users
+
 # - POST
 *POSITIVE CASE*
 1. JSON
@@ -39,3 +41,9 @@ Here we can Learn about the Rest API Examples on HTTP Methods :
 1. Incorrect Header
 2. Duplicate Data
 3. Missing Data
+
+# - PUT
+1. Put call
+2. Put call using fixtures
+3. Put call using JSON from different package
+4. E2E flow ( POST + PUT + GET ) 

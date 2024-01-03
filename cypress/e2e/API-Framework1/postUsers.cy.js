@@ -24,7 +24,7 @@ describe('POST CALL', () => {
     });
   });
 
-  // create a function from email 
+  // create a function for email 
   
   let generateRandomEmail = () => {
     const randomString = Math.random().toString(36).substring(2,10)
@@ -77,7 +77,6 @@ describe('POST CALL', () => {
             }).then((res)=>{
                 expect(res.status).to.eq(201);
                 expect(res.body).to.have.property("name", "Mahi Singh Dhoni"); // Case-sensitive
-                //cy.log("***** LOG 1**********")
                 expect(res.body).to.have.property("email",randoEmail)
                 expect(res.body).to.have.property("gender", "male");
                 expect(res.body).to.have.property("status", "active");
@@ -86,7 +85,7 @@ describe('POST CALL', () => {
         })
     })
 
-    // post call using config json with POST a call and GET the ID for the POST call wich is auto generated.
+    // post call using config json with POST a call and GET the ID for the POST call which is auto generated.
 
     it('POST CALL - using config JSOn (',() =>{
         
@@ -101,14 +100,12 @@ describe('POST CALL', () => {
             }).then((res)=>{
                 expect(res.status).to.eq(201);
                 expect(res.body).to.have.property("name", "SK"); // Case-sensitive
-                //cy.log("***** LOG 1**********")
                 expect(res.body).to.have.property("email",randoEmail)
                 expect(res.body).to.have.property("gender", "male");
                 expect(res.body).to.have.property("status", "active");
                 expect(res.body.id).to.not.be.null;
 
                 let id = res.body.id
-
                 cy.request({
                     method:"GET",
                     url: 'https://gorest.co.in/public/v2/users/'+id,

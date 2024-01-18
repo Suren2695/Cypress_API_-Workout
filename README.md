@@ -47,3 +47,8 @@ Here we can Learn about the Rest API Examples on HTTP Methods :
 2. Put call using fixtures
 3. Put call using JSON from different package
 4. E2E flow ( POST + PUT + GET ) 
+
+# - DELETE
+1. Delete call
+2. create a post call 
+3. Delete that post call

@@ -1,3 +1,5 @@
+import { expect } from "chai"
+
 describe(' Delete  API Automation in cypress', () =>{
 
     let generateRandomEmail = () => {
@@ -22,8 +24,31 @@ describe(' Delete  API Automation in cypress', () =>{
             headers:{
                 Authorization: "Bearer 06c7ac383dd846ec15d6e8cc10c2a1da1924848199da24c601c805edfba8868e"
             },
-            body:payLoad
-            
+            body:payLoad        
+        }).then((res) =>{
+            const userId = res.body.id
+
+            cy.request({
+                method:'DELETE',
+                url:'https://gorest.co.in/public/v2/users/'+userId,
+                headers:{
+                    Authorization: "Bearer 06c7ac383dd846ec15d6e8cc10c2a1da1924848199da24c601c805edfba8868e"
+                }    
+            }).then((res)=>{
+                expect(res.status).to.be.equal(204)
+            })
+
+//get the value using GET call
+            cy.request({
+                method:'GET',
+                url:'https://gorest.co.in/public/v2/users/'+userId,
+                headers:{
+                    Authorization: "Bearer 06c7ac383dd846ec15d6e8cc10c2a1da1924848199da24c601c805edfba8868e"
+                },
+                failOnStatusCode: false
+            }).then((res)=>{
+                expect(res.status).to.be.equal(404)
+            })
         })
 
     })
